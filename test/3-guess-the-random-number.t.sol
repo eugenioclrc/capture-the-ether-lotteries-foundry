@@ -5,8 +5,6 @@ import "forge-std/Test.sol";
 
 import "../src/3-Guess-the-random-number.sol";
 
-// aqui puedes agregar un contrato o hacer otro import
-
 contract Challenge3Test is Test {
     GuessTheRandomNumberChallenge target;
     address player = vm.addr(1);
@@ -21,9 +19,7 @@ contract Challenge3Test is Test {
     function testChallenge() public {
         uint8 answer = uint8(uint256(vm.load(address(target), 0)));
         vm.startPrank(address(player));
-
-        // Tu codigo aqui
-
+        target.guess{value: 1 ether}(answer);
         assertTrue(target.isComplete());
     }
 }

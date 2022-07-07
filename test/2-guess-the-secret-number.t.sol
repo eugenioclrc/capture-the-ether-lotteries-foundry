@@ -5,8 +5,6 @@ import "forge-std/Test.sol";
 
 import "../src/2-Guess-the-secret-number.sol";
 
-// aqui puedes agregar un contrato o hacer otro import
-
 contract Challenge2Test is Test {
     GuessTheSecretNumberChallenge target;
     address player = vm.addr(1);
@@ -20,10 +18,17 @@ contract Challenge2Test is Test {
 
     function testChallenge() public {
         bytes32 answerHash = 0xdb81b4d58595fbbbb592d3661a34cdca14d7ab379441400cbfa1b78bc447c365;
-        vm.startPrank(address(player));
-        
-        // Tu codigo aqui
 
+        uint8 answer;
+        for (uint8 i; i <= type(uint8).max; ++i) {
+            if (keccak256(abi.encodePacked(i)) == answerHash) {
+                answer = i;
+                break;
+            }
+        }
+
+        vm.startPrank(address(player));
+        target.guess{value: 1 ether}(answer);
         assertTrue(target.isComplete());
     }
 }

