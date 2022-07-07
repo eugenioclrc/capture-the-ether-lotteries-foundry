@@ -3,7 +3,6 @@
 
 Aca estan los contratos de la seccion lotteries de Capture The Ether adaptados a foundry, podes correrlo online sin instalar nada usando gitpod.
 
-Use online version
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/eugenioclrc/capture-the-ether-lotteries-foundry)
 
 
