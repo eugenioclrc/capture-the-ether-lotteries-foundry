@@ -14,5 +14,8 @@ Aca tenes un video tutorial de todos ejercicios en este repo:
 https://www.youtube.com/playlist?list=PLQ6T91uQFBa0o7dBsbIPWJAoVkK1q7f6x
 
 
+---
+## Soluciones
 
-
+En este branch estan los ejercicios resueltos;
+https://github.com/eugenioclrc/capture-the-ether-lotteries-foundry/tree/soluciones
